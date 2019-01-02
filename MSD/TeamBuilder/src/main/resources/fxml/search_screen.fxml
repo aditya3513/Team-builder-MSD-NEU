@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
+
+<StackPane id="pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neu.teambuilder.ui.controllers.SearchController">
+    <children>
+        <HiddenSidesPane fx:id="pane">
+	      <content>
+			<GridPane fx:id="contentContainer">
+			   <columnConstraints>
+			      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+			   </columnConstraints>
+			   <rowConstraints>
+			      <RowConstraints maxHeight="-Infinity" minHeight="27.0" prefHeight="27.0" vgrow="SOMETIMES" />
+			      <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+			      <RowConstraints minHeight="400.0" vgrow="SOMETIMES" />
+			      <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+			   </rowConstraints>
+			   <children>
+			      <MenuBar prefHeight="27.0">
+			        <menus>
+			          <Menu mnemonicParsing="false" text="File">
+			            <items>
+			                <MenuItem mnemonicParsing="false" text="New" />
+			                <SeparatorMenuItem mnemonicParsing="false" />
+			              	<MenuItem mnemonicParsing="false" text="Save" />
+			                <MenuItem mnemonicParsing="false" text="Close" />
+			                <SeparatorMenuItem mnemonicParsing="false" />
+			                <MenuItem mnemonicParsing="false" text="Exit" />
+			            </items>
+			          </Menu>
+			          <Menu mnemonicParsing="false" text="Edit">
+			            <items>
+			                <MenuItem mnemonicParsing="false" text="Export to CSV" />
+			                <MenuItem mnemonicParsing="false" text="Delete" />
+			                <SeparatorMenuItem mnemonicParsing="false" />
+			                <MenuItem mnemonicParsing="false" text="Options" />
+			            </items>
+			          </Menu>
+			          <Menu mnemonicParsing="false" text="View">
+			             <items>
+			                <MenuItem mnemonicParsing="false" text="History" />
+			             </items>
+			          </Menu>
+			          <Menu mnemonicParsing="false" text="Help">
+			            <items>
+			              <MenuItem mnemonicParsing="false" text="About" />
+			            </items>
+			          </Menu>
+			        </menus>
+			      </MenuBar>
+			      <ToolBar prefHeight="40.0" GridPane.rowIndex="1">
+			        <items>
+			          <Button id="btnSearch" onAction="#handleNewSearch" mnemonicParsing="false" text="New Search" />
+			            <Button id="btnSave" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Save" />
+			            <Button id="btnHistory" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="History" />
+			            <Button id="btnOptions" layoutX="175.0" layoutY="10.0" mnemonicParsing="false" style="-fx-alignment: right;" text="Options" />
+			        </items>
+			      </ToolBar>
+			      <SplitPane dividerPositions="0.5, 0.5" style="-fx-alignment: top;" GridPane.rowIndex="2">
+			        <items>
+			            <Accordion maxWidth="-Infinity" minWidth="-Infinity" SplitPane.resizableWithParent="false">
+			              <panes>
+			                <TitledPane animated="false" text="Publisher Filters">
+			                  <content>
+			                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+			                           <children>
+			                              <VBox>
+			                                 <children>
+			                                    <Button fx:id="btnAddJournalName" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="publisher-filter" stylesheets="@../styles/Styles.css" text="J : Journal Name">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                       <font>
+			                                          <Font size="18.0" />
+			                                       </font>
+			                                    </Button>
+			                                    <Button fx:id="btnAddConfName" layoutX="10.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="publisher-filter" stylesheets="@../styles/Styles.css" text="C : Conference Name">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                    <Button fx:id="btnAddBookName" mnemonicParsing="false" styleClass="publisher-filter" onAction="#handleNewFilterAction" stylesheets="@../styles/Styles.css" text="B : Book Name">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                 </children>
+			                              </VBox>
+			                           </children>
+			                        </AnchorPane>
+			                  </content>
+			                </TitledPane>
+			                  <TitledPane animated="false" layoutX="10.0" layoutY="10.0" text="Publication Filters">
+			                     <content>
+			                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+			                           <children>
+			                              <VBox>
+			                                 <children>
+			                                    <Button fx:id="btnAddThesisTitle" mnemonicParsing="false" styleClass="publication-filter" onAction="#handleNewFilterAction" stylesheets="@../styles/Styles.css" text="T : Thesis Title">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                    <Button fx:id="btnAddPaperTitle" mnemonicParsing="false" styleClass="publication-filter" onAction="#handleNewFilterAction" stylesheets="@../styles/Styles.css" text="P : Paper Title">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                 </children>
+			                              </VBox>
+			                           </children>
+			                        </AnchorPane>
+			                     </content>
+			                  </TitledPane>
+			                  <TitledPane animated="false" layoutX="10.0" layoutY="61.0" stylesheets="@../styles/Styles.css" text="Date Filters">
+			                     <content>
+			                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+			                           <children>
+			                              <VBox>
+			                                 <children>
+			                                    <Button fx:id="btnAddFrom" layoutX="10.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="date-filter" stylesheets="@../styles/Styles.css" text="F : From">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                    <Button fx:id="btnAddTo" layoutX="10.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="date-filter" stylesheets="@../styles/Styles.css" text="T : To">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                 </children>
+			                              </VBox>
+			                           </children>
+			                        </AnchorPane>
+			                     </content>
+			                  </TitledPane>
+			                  <TitledPane animated="false" layoutX="10.0" layoutY="112.0" text="Other Filters">
+			                     <content>
+			                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+			                           <children>
+			                              <VBox>
+			                                 <children>
+			                                    <Button fx:id="btnAddAuthorName" layoutX="10.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="other-filter" stylesheets="@../styles/Styles.css" text="A : Author Name">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                    <Button fx:id="btnAddMinPublications" layoutX="10.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="other-filter" stylesheets="@../styles/Styles.css" text="P : Minimum Publications">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                    <Button fx:id="btnAddMinCitations" layoutX="10.0" layoutY="367.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="other-filter" stylesheets="@../styles/Styles.css" text="C : Minimum Citations">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                    <Button fx:id="btnAddMinYearsServed" layoutX="10.0" layoutY="418.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="other-filter" stylesheets="@../styles/Styles.css" text="Y : Minimum years served">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                    <Button fx:id="btnAddFOE" layoutX="10.0" layoutY="469.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="other-filter" stylesheets="@../styles/Styles.css" text="F : Field of Expertise">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                 </children>
+			                              </VBox>
+			                           </children>
+			                        </AnchorPane>
+			                     </content>
+			                  </TitledPane>
+			                <TitledPane animated="false" text="Join Operators">
+			                  <content>
+			                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+			                           <children>
+			                              <VBox>
+			                                 <children>
+			                                    <Button fx:id="btnAddStartSet" layoutX="10.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="conditional-filter" stylesheets="@../styles/Styles.css" text="(">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                    <Button fx:id="btnAddEndSet" layoutX="10.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="conditional-filter" stylesheets="@../styles/Styles.css" text=")">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                    <Button fx:id="btnAddAnd" layoutX="10.0" layoutY="367.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="conditional-filter" stylesheets="@../styles/Styles.css" text="AND">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                    <Button fx:id="btnAddOr" layoutX="20.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleNewFilterAction" styleClass="conditional-filter" stylesheets="@../styles/Styles.css" text="OR">
+			                                       <VBox.margin>
+			                                          <Insets left="10.0" top="10.0" />
+			                                       </VBox.margin>
+			                                    </Button>
+			                                 </children>
+			                              </VBox>
+			                           </children>
+			                        </AnchorPane>
+			                  </content>
+			                </TitledPane>
+			              </panes>
+			            </Accordion>
+			            <TabPane fx:id="openSearches" tabClosingPolicy="ALL_TABS" tabMinWidth="150.0">
+			              <tabs />
+			            </TabPane>
+			            <GridPane minWidth="210.0" maxWidth="210" prefWidth="210.0">
+			               <columnConstraints>
+			                 <ColumnConstraints minWidth="210.0" maxWidth="210" prefWidth="210.0" />
+			               </columnConstraints>
+			               <rowConstraints>
+			                 <RowConstraints vgrow="SOMETIMES" minHeight="20.0" prefHeight="20.0" maxHeight="20.0" />
+			                 <RowConstraints vgrow="SOMETIMES" />
+			               </rowConstraints>
+			               <children>
+			                 <ToolBar prefHeight="20.0" GridPane.rowIndex="0">
+			        			<items>
+				                 <GridPane>
+				                    <columnConstraints>
+				                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
+				                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+				                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+				                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+				                    </columnConstraints>
+				                    <rowConstraints>
+				                      <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+				                    </rowConstraints>
+				                     <children>
+				                        <Label styleClass="header-text" stylesheets="@../styles/Styles.css" text="Selected Authors" />
+				                        <ToggleButton mnemonicParsing="false" styleClass="small-image-button" stylesheets="@../styles/Styles.css" GridPane.columnIndex="1">
+				                           <graphic>
+				                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+				                                 <image>
+				                                    <Image url="@lock.png" />
+				                                 </image>
+				                              </ImageView>
+				                           </graphic>
+				                        </ToggleButton>
+				                        <Button mnemonicParsing="false" styleClass="small-image-button" stylesheets="@../styles/Styles.css" GridPane.columnIndex="2">
+				                           <graphic>
+				                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+				                                 <image>
+				                                    <Image url="@save.png" />
+				                                 </image>
+				                              </ImageView>
+				                           </graphic>
+				                        </Button>
+				                        <Button mnemonicParsing="false" styleClass="small-image-button" stylesheets="@../styles/Styles.css" GridPane.columnIndex="3">
+				                           <graphic>
+				                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+				                                 <image>
+				                                    <Image url="@config.png" />
+				                                 </image>
+				                              </ImageView>
+				                           </graphic>
+				                        </Button>
+				                     </children>
+				                     <VBox.margin>
+				                        <Insets left="5.0" right="5.0" />
+				                     </VBox.margin>
+				                  </GridPane> 
+			                  	</items>
+			      			  </ToolBar>
+				              <VBox fx:id="selectionPane" alignment="TOP_LEFT" maxWidth="200" minWidth="200" prefWidth="200.0" GridPane.rowIndex="1">
+				                 <children />
+				              </VBox>
+				           </children>
+				        </GridPane>
+			        </items>
+			      </SplitPane>
+			    <HBox id="HBox" alignment="CENTER_LEFT" prefHeight="20.0" spacing="5.0" GridPane.rowIndex="3">
+			      <children>
+			        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
+			          <font>
+			            <Font size="11.0" fx:id="x3" />
+			          </font>
+			          <textFill>
+			            <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
+			          </textFill>
+			        </Label>
+			        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+			        <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
+			      </children>
+			      <padding>
+			        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+			      </padding>
+			    </HBox>
+			   </children>
+			</GridPane>
+		  </content>
+	      <right>
+	        <GridPane styleClass="author-info-slide-out-style">
+			   <columnConstraints>
+			      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+			   </columnConstraints>
+			   <rowConstraints>
+			      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+			      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+			   </rowConstraints>
+			   <children>
+			      <HBox maxHeight="30.0" minHeight="30.0" prefHeight="30.0" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="0">
+			        <children>
+			          <Button styleClass="small-image-button" mnemonicParsing="false" onAction="#handleGoBackAction">
+			          	  <HBox.margin>
+                             <Insets bottom="0.0" left="10.0" right="0.0" top="5.0" />
+                          </HBox.margin>
+				          <graphic>
+				          	<ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+	                           <image>
+	                              <Image url="@delete.png" />
+	                           </image>
+	                        </ImageView>
+				          </graphic>			          	
+			          </Button>			          
+			        </children>
+			      </HBox>
+			      <GridPane GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" GridPane.rowIndex="1">
+	               <columnConstraints>
+	                  <ColumnConstraints hgrow="SOMETIMES" />
+	               </columnConstraints>
+	               <rowConstraints>
+	                  <RowConstraints minHeight="250.0" maxHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+	                  <RowConstraints vgrow="SOMETIMES" />
+	               </rowConstraints>
+	               <children>	                  
+	                  <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" GridPane.hgrow="SOMETIMES">
+	                     <children>
+	                        <ImageView fx:id="authorImage" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+	                           <HBox.margin>
+	                              <Insets bottom="10.0" left="10.0" right="20.0" top="0.0" />
+	                           </HBox.margin>
+	                           <image>
+	                              <Image url="@person.png" />
+	                           </image>
+	                        </ImageView>
+	                        <VBox maxHeight="250.0" minHeight="250.0" prefHeight="250.0">
+	                           <children>
+	                              <Label fx:id="lblAuthorName">
+	                                 <font>
+	                                    <Font name="Calibri Bold" size="25.0" />
+	                                 </font>
+	                              </Label>
+	                              <GridPane prefHeight="100.0">
+	                                <columnConstraints>
+	                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" />
+	                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" />
+	                                </columnConstraints>
+	                                <rowConstraints>
+	                                  <RowConstraints minHeight="20.0" maxHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+	                                  <RowConstraints minHeight="20.0" maxHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+	                                  <RowConstraints minHeight="20.0" maxHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+	                                  <RowConstraints minHeight="20.0" maxHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+	                                  <RowConstraints minHeight="20.0" maxHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+	                                  <RowConstraints minHeight="20.0" maxHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+	                                  <RowConstraints minHeight="20.0" maxHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+	                                </rowConstraints>
+	                                 <VBox.margin>
+	                                    <Insets bottom="10.0" top="10.0" />
+	                                 </VBox.margin>
+	                                 <children>
+	                                    <Label text="Aliases" styleClass="field-label" />
+	                                    <Label text="Home page" styleClass="field-label" GridPane.rowIndex="1" />
+	                                    <Label text="Fields of Expertise" styleClass="field-label" GridPane.rowIndex="2" />
+	                                    <Label text="Total Publications" styleClass="field-label" GridPane.rowIndex="3" />
+	                                    <Label text="Publications in last 5 years" styleClass="field-label" GridPane.rowIndex="4" />
+	                                    <Label text="Total Citations" styleClass="field-label" GridPane.rowIndex="5" />
+	                                    <Label text="Citations in last 5 years" styleClass="field-label" GridPane.rowIndex="6" />
+	                                    <Label fx:id="lblAlias" GridPane.columnIndex="1" />
+	                                    <Label fx:id="lblHomePage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+	                                    <Label fx:id="lblFOE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+	                                    <Label fx:id="lblTotalPublications" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+	                                    <Label fx:id="lblRecentPublications" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+	                                    <Label fx:id="lblTotalCitations" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+	                                    <Label fx:id="lblRecentCitations" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+	                                 </children>
+	                              </GridPane>
+	                              <HBox spacing="10">
+	                              	<children>
+	                              		<Button mnemonicParsing="false" text="Add to Committee" onAction="#handleAddSelectedAuthorAction" />
+                   	  					<Button mnemonicParsing="false" text="Search Similar Authors" onAction="#handleSearchSimilarAuthorsAction" />
+	                              	</children>
+	                              </HBox>
+	                           </children>
+	                        </VBox>
+	                     </children>
+	                  </HBox>
+	                  <TableView fx:id="articlesContainer" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">                    
+	                  </TableView>
+	               </children>
+	            </GridPane>			      
+			   </children>
+			</GridPane>
+	      </right>
+	    </HiddenSidesPane>
+    </children>
+</StackPane>

@@ -1,0 +1,89 @@
+.button {
+  -fx-font-size: 11;
+  -fx-font-weight: normal;
+}
+
+.publisher-filter {
+    -fx-text-fill: white;
+    -fx-font-size: 11;
+    -fx-font-weight: normal;
+    -fx-background-color: #50514F;
+    -fx-background-radius: 10;
+}
+
+.publication-filter {
+    -fx-text-fill: white;
+    -fx-font-size: 11;
+    -fx-font-weight: normal;
+    -fx-background-color: #F25F5C;
+    -fx-background-radius: 10;
+}
+
+.date-filter {
+    -fx-text-fill: white;
+    -fx-font-size: 11;
+    -fx-font-weight: normal;
+    -fx-background-color: #F2BB05;
+    -fx-background-radius: 10;
+}
+
+.other-filter {
+    -fx-text-fill: white;
+    -fx-font-size: 11;
+    -fx-font-weight: normal;
+    -fx-background-color: #247BA0;
+    -fx-background-radius: 10;
+}
+
+.conditional-filter {
+    -fx-text-fill: white;
+    -fx-font-size: 11;
+    -fx-font-weight: normal;
+    -fx-background-color: #70C1B3;
+    -fx-background-radius: 10;
+}
+
+.small-image-button {
+    -fx-pref-height: 15;
+    -fx-pref-width: 15;
+    -fx-background-color: transparent;
+}
+
+.author-details-button {
+	-fx-font-size: 11;
+    -fx-font-weight: normal;
+    -fx-background-color: transparent;
+}
+
+.remove-author-button {
+    -fx-pref-height: 15;
+    -fx-pref-width: 15;
+    -fx-background-color: transparent;
+}
+
+.selected-author-container {
+	-fx-padding: 5;
+    -fx-background-color: normal;
+}
+
+.header-text {
+	-fx-font-size: 11;
+    -fx-font-weight: normal;
+}
+
+.small-author-dp {
+    -fx-pref-height: 20;
+    -fx-pref-width: 20;
+}
+
+.field-label {
+	-fx-font-weight: bold;
+}
+
+.center-aligned-column {
+	-fx-alignment: center;
+}
+
+.author-info-slide-out-style {
+	-fx-background-color: whitesmoke;
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.*?>
+
+<StackPane id="pane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml" fx:controller="com.neu.teambuilder.FXMLController">
+    <children>
+        <HiddenSidesPane fx:id="pane">
+	      <content>
+	        <Label alignment="CENTER"  style="-fx-background-color: white; -fx-border-color: black;" maxHeight="1000.0" maxWidth="1000.0"  text="Content Node" />
+	      </content>
+	      <top>
+	        <Label fx:id="pinLabel"  style="-fx-background-color: rgba(0,255,0,.25);"  text="(Click to pin / unpin)" alignment="CENTER" prefHeight="50.0" prefWidth="50.0"  onMouseClicked="#handleMouseClicked"  />
+	      </top>
+	    </HiddenSidesPane>
+    </children>
+</StackPane>
